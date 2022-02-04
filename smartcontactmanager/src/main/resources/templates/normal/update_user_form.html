@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="card">
+				<div class="card-body">
+					<h1 class="container text-center">Update Profile</h1>
+					<div class="container-fluid mt-1">
+						<div class="row">
+							<div class="col-md-8 offset-md-2">
+								<form th:action="@{/user/profile-process-update}" th:object="${user}" enctype="multipart/form-data" method="post" class="mt-2">
+									
+									<input type="hidden" th:value="${user.id}" name="cid" />
+									
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-plus"></i>	
+											</div>
+										</div>
+										<input th:value="${user.name}" type="text" id="name" name="name" class="form-control" placeholder="Enter name here" required="">
+									</div>
+															
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fas fa-user-tie"></i>	
+											</div>
+										</div>
+										<input th:value="${user.email}" type="email" id="email" name="email" class="form-control" placeholder="Enter email here" required="">
+									</div>
+									
+									<div class="form-group mt-3">
+										<textarea  th:utext="${user.about}" id="mytextarea" class="form-control" rows="10" cols="" name="about" placeholder="Enter about yourself"></textarea>
+									</div>
+									
+									<div class="container text-center">
+										<img class="my-profile-picture" style="width:200px;height:200px;" th:src="@{'/image/'+${user.imageUrl}}"/>
+									</div>
+									<p class="text-secondary">Choose a new profile pic</p>
+									<div class="custom-file mt-3">
+										<input type="file" name="profileImage">
+									</div>
+									<div class="conatiner mt-3 text-center">
+										<button type="submit" class="btn btn-outline-primary">Update</button>
+									</div>
+									
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+      		tinymce.init({
+        	selector: '#mytextarea'
+      		});
+    	</script>
+	</section>
+</body>
+</html>

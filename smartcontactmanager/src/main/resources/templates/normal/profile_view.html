@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="conatiner">
+			<div class="card">
+				<div class="card-body text-center">
+				
+				<img class="my-profile-picture" style="width:200px;height:200px;" th:src="@{'/image/'+${user.imageUrl}}" alt="profile image" />
+				
+					<h1 class="text-center" th:text="${user.name}"></h1>
+					<div class="table-responsive">
+					<table class="table">
+					  <tbody>
+					  	<tr>
+					      <th scope="col">#USERID</th>
+					      <th scope="col">SCMUSER<span th:text="${user.id}"></span></th>
+					    </tr>
+					    <tr>
+					      <th scope="row">Email</th>
+					      <td><span th:text="${user.email}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Role</th>
+					      <td><span th:text="${user.role}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Account Active</th>
+					      <td><span th:text="${user.enabled}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">About You</th>
+					      <td><span th:utext="${user.about}"></span></td>
+					    </tr>
+					  </tbody>
+					</table>
+					</div>
+					<form class="mb-2" th:action="@{'/user/update-userform/'+${user.id}}" method="post">
+				      	<button type="submit" class="btn btn-primary btn-sm">Update</button>
+				      </form>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(()=>{
+				$(".item").removeClass("active");
+				$("#profile-link").addClass("active");
+			})
+		</script>
+	</section>
+</body>
+</html>
